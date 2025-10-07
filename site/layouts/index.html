@@ -26,7 +26,12 @@
         {{ $cover = index $imgs 0 }}
       {{ end }}
 
-      <img class="cover" src="{{ $cover | relURL }}" alt="{{ $s.title_th }}">
+      <img class="cover" src="{{ $cover | relURL }}" alt="{{ $s.title_th }}"
+            loading="eager" fetchpriority="high" decoding="async">
+
+      <!-- thumbnails -->
+      <img src="{{ . | relURL }}" alt="{{ $s.title_th }}"
+            loading="lazy" decoding="async" style="width:64px;height:auto;...">
 
       <h3>{{ $s.title_th }}</h3>
       {{ with $s.description_th }}<p>{{ . }}</p>{{ end }}
