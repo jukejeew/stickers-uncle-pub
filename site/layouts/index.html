@@ -1,4 +1,3 @@
-
 {{ define "main" }}
 <h1 class="title">Sticker Portfolio</h1>
 
@@ -6,7 +5,29 @@
   {{ range $id, $s := site.Data.stickers }}
     {{ if ne $s.status "Hidden" }}
     <article class="card" data-status="{{ $s.status }}">
-      <img class="cover" src="{{ $s.cover | relURL }}" alt="{{ $s.title_th }}">
+
+      {{/* --- Collect images from base_dir (under site/static/...) --- */}}
+      {{ $base := $s.images.base_dir }}
+      {{ $imgs := slice }}
+      {{ $dir  := printf "static/%s" $base }}
+      {{ if fileExists $dir }}
+        {{ range (readDir $dir | sort "Name") }}
+          {{ $name  := .Name }}
+          {{ $lower := $name | lower }}
+          {{ if and (eq (path.Ext $lower) ".png") (ne $lower "cover.png") }}
+            {{ $imgs = $imgs | append (printf "%s/%s" $base $name) }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{/* --- Cover: use $s.cover if present; otherwise use first image --- */}}
+      {{ $cover := $s.cover }}
+      {{ if and (not $cover) (gt (len $imgs) 0) }}
+        {{ $cover = index $imgs 0 }}
+      {{ end }}
+
+      <img class="cover" src="{{ $cover | relURL }}" alt="{{ $s.title_th }}">
+
       <h3>{{ $s.title_th }}</h3>
       {{ with $s.description_th }}<p>{{ . }}</p>{{ end }}
 
@@ -15,20 +36,26 @@
         <span class="badge {{ lower $s.status }}">{{ $s.status }}</span>
       </div>
 
+      {{/* (optional) thumbnails: show first 3 images */}}
+      {{ if gt (len $imgs) 0 }}
+        <div class="thumbs" style="margin:.5rem 0; display:flex; gap:6px;">
+          {{ range first 3 $imgs }}
+            <img src="{{ . | relURL }}" alt="{{ $s.title_th }}" style="width:64px;height:auto;border-radius:6px;border:1px solid #e5e7eb;">
+          {{ end }}
+        </div>
+      {{ end }}
+
       <div class="actions">
         {{ if $s.line_store_url }}
-          <a class="btn primary"
-             href="{{ $s.line_store_url }}"
-             target="_blank" rel="noopener">เปิดใน LINE Store</a>
+          <a class="btn primary" href="{{ $s.line_store_url }}" target="_blank" rel="noopener">เปิดใน LINE Store</a>
         {{ else }}
-          <button class="btn disabled" disabled aria-disabled="true"
-                  title="ยังไม่มีลิงก์—รออนุมัติ">รออนุมัติ</button>
+          <button class="btn disabled" disabled aria-disabled="true" title="ยังไม่มีลิงก์—รออนุมัติ">รออนุมัติ</button>
         {{ end }}
       </div>
 
       <details class="howto">
         <summary>วิธีใส่ลิงก์หลังอนุมัติ</summary>
-        <code>data/stickers/{{ $s.id }}.yml → line_store_url</code>
+        <code>site/data/stickers/{{ $s.id }}.yml → line_store_url</code>
       </details>
     </article>
     {{ end }}
