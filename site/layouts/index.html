@@ -53,6 +53,7 @@
         {{ end }}
       </div>
 
+    {{ if eq hugo.Environment "development" }}
       <details class="howto">
         <summary>วิธีใส่ลิงก์หลังอนุมัติ</summary>
         <code>site/data/stickers/{{ $s.id }}.yml → line_store_url</code>
