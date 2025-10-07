@@ -9,3 +9,4 @@ canonifyURLs = true
 
 [params]
 siteName = "Sticker Portfolio"
+disableKinds = ["taxonomy", "taxonomyTerm"]

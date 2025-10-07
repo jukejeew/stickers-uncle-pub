@@ -11,7 +11,7 @@
       {{ $imgs := slice }}
       {{ $dir  := printf "static/%s" $base }}
       {{ if fileExists $dir }}
-        {{ range (readDir $dir | sort "Name") }}
+        {{ range (sort (readDir $dir) "Name") }}
           {{ $name  := .Name }}
           {{ $lower := $name | lower }}
           {{ if and (eq (path.Ext $lower) ".png") (ne $lower "cover.png") }}
