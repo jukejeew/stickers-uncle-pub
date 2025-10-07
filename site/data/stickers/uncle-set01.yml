@@ -1,6 +1,6 @@
-id: "uncle-v1"
+id: "uncle-set01"
 title_th: "ลุงใจดี ชุดที่ 1"
-title_en: "Uncle Tone Vol.1"
+title_en: "Uncle Oan Set01"
 author: "JukeJeew Studio"
 tags: ["Uncle","Warm","Humor"]
 
@@ -8,8 +8,7 @@ status: "Pending"   # Draft | Pending | Published | Hidden
 line_store_url: ""  # เติมลิงก์หลัง LINE อนุมัติ
 
 images:
-  base_dir: "assets/stickers/uncle-v1"
-  files: ["01.png","02.png","03.png","04.png","05.png","06.png"]
-cover: "assets/stickers/uncle-v1/cover.png"
+  base_dir: "assets/stickers/uncle-set01"
+  cover: "assets/stickers/uncle-set01/cover.png"
 
 description_th: "โทนลุงใจดี—อุ่น นุ่ม ขำเบา ๆ พร้อมใช้งานในแชต"
