@@ -6,7 +6,7 @@
     {{ if ne $s.status "Hidden" }}
     <article class="card" data-status="{{ $s.status }}">
 
-      {{/* --- Collect images from base_dir (under site/static/...) --- */}}
+      {{/* --- รวมรูปจากโฟลเดอร์ base_dir (ใต้ site/static/...) --- */}}
       {{ $base := $s.images.base_dir }}
       {{ $imgs := slice }}
       {{ $dir  := printf "static/%s" $base }}
@@ -20,32 +20,32 @@
         {{ end }}
       {{ end }}
 
-      {{/* --- Cover: use $s.cover if present; otherwise use first image --- */}}
-      {{ $cover := or $s.cover $s.images.cover }}
-      {{ if and (not $cover) (gt (len $imgs) 0) }}
-        {{ $cover = index $imgs 0 }}
-      {{ end }}
+      {{/* --- กำหนดรูปปก: รองรับทั้ง s.cover และ s.images.cover; ถ้าไม่มีใช้ภาพแรก --- */}}
+      {{ $cover := "" }}
+      {{ with $s.cover }} {{ $cover = . }} {{ end }}
+      {{ if not $cover }} {{ with $s.images.cover }} {{ $cover = . }} {{ end }} {{ end }}
+      {{ if and (not $cover) (gt (len $imgs) 0) }} {{ $cover = index $imgs 0 }} {{ end }}
 
-      <img class="cover" src="{{ $cover | relURL }}" alt="{{ $s.title_th }}"
-            loading="eager" fetchpriority="high" decoding="async">
+      <img class="cover"
+           src="{{ $cover | relURL }}"
+           alt="{{ $s.title_th }}"
+           loading="eager" fetchpriority="high" decoding="async">
 
-      <!-- thumbnails -->
-      <img src="{{ . | relURL }}" alt="{{ $s.title_th }}"
-            loading="lazy" decoding="async" style="width:64px;height:auto;">
-
-      <h3>{{ $s.title_th }}</h3>
+      <h2>{{ $s.title_th }}</h2>
       {{ with $s.description_th }}<p>{{ . }}</p>{{ end }}
 
       <div class="meta">
-        <span class="tag-list">{{ delimit $s.tags ", " }}</span>
+        {{ with $s.tags }}<span class="tag-list">{{ delimit . ", " }}</span>{{ end }}
         <span class="badge {{ lower $s.status }}">{{ $s.status }}</span>
       </div>
 
-      {{/* (optional) thumbnails: show first 3 images */}}
       {{ if gt (len $imgs) 0 }}
         <div class="thumbs" style="margin:.5rem 0; display:flex; gap:6px;">
           {{ range first 3 $imgs }}
-            <img src="{{ . | relURL }}" alt="{{ $s.title_th }}" style="width:64px;height:auto;border-radius:6px;border:1px solid #e5e7eb;">
+            <img src="{{ . | relURL }}"
+                 alt="{{ $s.title_th }}"
+                 loading="lazy" decoding="async"
+                 style="width:64px;height:auto;border-radius:6px;border:1px solid #e5e7eb;">
           {{ end }}
         </div>
       {{ end }}
@@ -58,14 +58,14 @@
         {{ end }}
       </div>
 
-    {{ if eq hugo.Environment "development" }}
+      {{ if eq hugo.Environment "development" }}
       <details class="howto">
         <summary>วิธีใส่ลิงก์หลังอนุมัติ</summary>
         <code>site/data/stickers/{{ $s.id }}.yml → line_store_url</code>
       </details>
-    {{ end }}
+      {{ end }}
+
     </article>
-    {{ end }}
     {{ end }}
   {{ end }}
 </div>
