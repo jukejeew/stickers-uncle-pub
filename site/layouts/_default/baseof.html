@@ -6,6 +6,13 @@
   <title>{{ if .Title }}{{ .Title }} · {{ end }}{{ .Site.Params.siteName }}</title>
   <link rel="stylesheet" href="{{ "assets/css/main.css" | relURL }}">
   <meta name="robots" content="index,follow">
+  <meta name="description" content="ผลงานสติ๊กเกอร์ LINE โดย JukeJeew – รวมตัวอย่างและลิงก์ไปยัง LINE Store">
+  <meta property="og:title" content="Sticker Portfolio">
+  <meta property="og:description" content="ผลงานสติ๊กเกอร์ LINE โดย JukeJeew">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Site.BaseURL }}">
+  <meta property="og:image" content="{{ "assets/stickers/uncle-set01/cover.png" | relURL }}">
+  <link rel="canonical" href="{{ .Site.BaseURL }}">
 </head>
 <body>
   <main class="container">
