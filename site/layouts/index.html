@@ -31,7 +31,7 @@
 
       <!-- thumbnails -->
       <img src="{{ . | relURL }}" alt="{{ $s.title_th }}"
-            loading="lazy" decoding="async" style="width:64px;height:auto;...">
+            loading="lazy" decoding="async" style="width:64px;height:auto;">
 
       <h3>{{ $s.title_th }}</h3>
       {{ with $s.description_th }}<p>{{ . }}</p>{{ end }}
@@ -63,7 +63,9 @@
         <summary>วิธีใส่ลิงก์หลังอนุมัติ</summary>
         <code>site/data/stickers/{{ $s.id }}.yml → line_store_url</code>
       </details>
+    {{ end }}
     </article>
+    {{ end }}
     {{ end }}
   {{ end }}
 </div>
