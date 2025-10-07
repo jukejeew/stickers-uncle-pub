@@ -28,23 +28,24 @@ jobs:
       - name: Build
         working-directory: site
         run: hugo --minify -b "https://jukejeew.github.io/stickers-uncle-pub/"
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: site/public
-          
+
   deploy:
-   needs: build
-   runs-on: ubuntu-latest
-   environment:
-    name: github-pages
-    url: ${{ steps.deployment.outputs.page_url }}   # 👉 แสดงลิงก์ใน Environment
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}   # 👈 โชว์ลิงก์ใน Environment
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-  steps:
-    - id: deployment
-      uses: actions/deploy-pages@v4
-
-    - name: Show deployed URL in summary
-      run: |
-        echo "### ✅ Deployed to" >> $GITHUB_STEP_SUMMARY
-        echo "${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
-        echo "::notice title=Pages URL::${{ steps.deployment.outputs.page_url }}"
+      - name: Show deployed URL in summary
+        run: |
+          echo "### ✅ Deployed to" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "::notice title=Pages URL::${{ steps.deployment.outputs.page_url }}"
