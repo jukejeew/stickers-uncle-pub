@@ -3,7 +3,7 @@ baseURL = "https://jukejeew.github.io/stickers-uncle-pub/"
 title = "Sticker Portfolio"
 languageCode = "th"
 defaultContentLanguage = "th"
-theme = ""
+# theme = ""
 enableGitInfo = false
 canonifyURLs = true
 
