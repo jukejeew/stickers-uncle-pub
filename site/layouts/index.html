@@ -21,7 +21,7 @@
       {{ end }}
 
       {{/* --- Cover: use $s.cover if present; otherwise use first image --- */}}
-      {{ $cover := $s.cover }}
+      {{ $cover := or $s.cover $s.images.cover }}
       {{ if and (not $cover) (gt (len $imgs) 0) }}
         {{ $cover = index $imgs 0 }}
       {{ end }}
