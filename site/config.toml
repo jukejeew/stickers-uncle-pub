@@ -7,6 +7,8 @@ defaultContentLanguage = "th"
 enableGitInfo = false
 canonifyURLs = true
 
+enableRobotsTXT = true
+
 [params]
 siteName = "Sticker Portfolio"
 disableKinds = ["taxonomy", "taxonomyTerm"]
