@@ -1,0 +1,37 @@
+
+{{ define "main" }}
+<h1 class="title">Sticker Portfolio</h1>
+
+<div class="grid">
+  {{ range $id, $s := site.Data.stickers }}
+    {{ if ne $s.status "Hidden" }}
+    <article class="card" data-status="{{ $s.status }}">
+      <img class="cover" src="{{ $s.cover | relURL }}" alt="{{ $s.title_th }}">
+      <h3>{{ $s.title_th }}</h3>
+      {{ with $s.description_th }}<p>{{ . }}</p>{{ end }}
+
+      <div class="meta">
+        <span class="tag-list">{{ delimit $s.tags ", " }}</span>
+        <span class="badge {{ lower $s.status }}">{{ $s.status }}</span>
+      </div>
+
+      <div class="actions">
+        {{ if $s.line_store_url }}
+          <a class="btn primary"
+             href="{{ $s.line_store_url }}"
+             target="_blank" rel="noopener">เปิดใน LINE Store</a>
+        {{ else }}
+          <button class="btn disabled" disabled aria-disabled="true"
+                  title="ยังไม่มีลิงก์—รออนุมัติ">รออนุมัติ</button>
+        {{ end }}
+      </div>
+
+      <details class="howto">
+        <summary>วิธีใส่ลิงก์หลังอนุมัติ</summary>
+        <code>data/stickers/{{ $s.id }}.yml → line_store_url</code>
+      </details>
+    </article>
+    {{ end }}
+  {{ end }}
+</div>
+{{ end }}

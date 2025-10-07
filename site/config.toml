@@ -1,0 +1,11 @@
+
+baseURL = "https://jukejeew.github.io/stickers-uncle-pub/"
+title = "Sticker Portfolio"
+languageCode = "th"
+defaultContentLanguage = "th"
+theme = ""
+enableGitInfo = false
+canonifyURLs = true
+
+[params]
+siteName = "Sticker Portfolio"

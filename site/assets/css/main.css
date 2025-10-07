@@ -1,0 +1,21 @@
+
+:root{--border:#e5e7eb;--ink:#111827;--muted:#6b7280;--bg:#ffffff}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Sans Thai",sans-serif;margin:0;color:var(--ink);background:var(--bg)}
+.container{max-width:1100px;margin:0 auto;padding:1.5rem}
+.title{font-size:1.8rem;margin:0 0 1rem 0}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{border:1px solid var(--border);border-radius:14px;padding:1rem;display:flex;flex-direction:column;gap:.5rem}
+.cover{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:.25rem 0 .5rem}
+.tag-list{font-size:.85rem;color:var(--muted)}
+.badge{font-size:.75rem;padding:.2rem .6rem;border-radius:999px;background:#f3f4f6;border:1px solid var(--border)}
+.badge.published{background:#e6ffed;border-color:#a7f3d0}
+.badge.pending{background:#fff7e6;border-color:#fde68a}
+.badge.draft{background:#f3f4f6}
+.actions{display:flex;gap:.5rem}
+.btn{padding:.55rem .85rem;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:#fff}
+.btn.primary{border-color:var(--ink)}
+.btn.disabled{opacity:.55;cursor:not-allowed}
+.howto{margin-top:.25rem;font-size:.85rem;color:var(--muted)}
+.footer{padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;color:var(--muted);margin-top:2rem}
