@@ -29,15 +29,11 @@ site/
 ## ตั้งค่าครั้งแรก
 
 1. แก้ `site/config.toml`
-   
    ```toml
    baseURL = "https://jukejeew.github.io/stickers-uncle-pub/"
    ```
-
 2. เปิด GitHub Pages: **Settings → Pages → Source = GitHub Actions**
-
-3. Commit/Push → รอ workflow `Build & Deploy` เสร็จ
-   
+3. Commit/Push → รอ workflow `Build & Deploy` เสร็จ  
    - ลิงก์หน้าเว็บจะแสดงใน **Actions Summary** และ **Environments: github-pages**
 
 ---
@@ -75,7 +71,6 @@ description_th: "คำอธิบายสั้น ๆ"
 ```
 
 **พฤติกรรมบนหน้าเว็บ**
-
 - ถ้า `line_store_url` ว่าง → ปุ่มจะแสดงเป็น **“รออนุมัติ”**
 - ถ้ามีลิงก์ → แสดงปุ่ม **“เปิดใน LINE Store”** กดได้ทันที
 - `status: Hidden` → ไม่แสดงการ์ด
@@ -83,7 +78,6 @@ description_th: "คำอธิบายสั้น ๆ"
 ---
 
 ## เคล็ดลับการจัดไฟล์รูป
-
 - ตั้งชื่อมีเลขนำหน้า เช่น `01_hello.png`, `02_thanks.png`, … เพื่อให้เรียงสวย
 - ใส่ `cover.png` ในโฟลเดอร์เดียวกัน (เทมเพลตจะไม่นับรวมเป็นสติ๊กเกอร์)
 - ถ้าจะทำลายน้ำ: ทำในเครื่อง (เช่น ImageMagick/Photoshop) แล้วค่อยวางไฟล์ที่ static
@@ -100,13 +94,9 @@ description_th: "คำอธิบายสั้น ๆ"
 ---
 
 ## คุณภาพโค้ด (ออปชันแต่อยากให้มี)
-
 - ใช้ **VS Code** + extensions: YAML (Red Hat), EditorConfig, Prettier, GitHub Actions
-
 - เปิด `format on save`, `render whitespace: all`, ปิด `detect indentation`
-
 - เพิ่มไฟล์ `.editorconfig` ที่รากรีโป:
-  
   ```ini
   root = true
   [*]
@@ -120,6 +110,5 @@ description_th: "คำอธิบายสั้น ๆ"
 ---
 
 ## License & Credits
-
-- สงวนลิขสิทธิ์ไฟล์ภาพทั้งหมด © ผู้สร้างสรรค์
+- สงวนลิขสิทธิ์ไฟล์ภาพทั้งหมด © ผู้สร้างสรรค์  
 - โค้ดหน้าเว็บ (เทมเพลต/CSS/workflow) อนุญาตให้ปรับใช้ภายในโปรเจกต์นี้
